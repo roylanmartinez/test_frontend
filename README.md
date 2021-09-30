@@ -1,7 +1,7 @@
 [![WheelHub](https://wheelhub.es/_nuxt/img/logo@2x.ff6c894.png)](https://wheelhub.es/)
 
 ## Instructions
-Siga las instrucciones establecidas en el proyecto
+Siga las instrucciones establecidas dentro del proyecto
 
 ## Installation
 
