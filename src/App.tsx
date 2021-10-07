@@ -51,7 +51,8 @@ class App extends Component {
                     <p>Se debe mostrar la contraseña ingresada al hacer click en el "ojo".</p>
                     <img src={Img6} />
                     <p>Cuando todos los datos obligatorios sean cargados, y se pulse el botón "Siguiente", se debe deshabilitar el botón y mostrar un spinner de carga.</p>
-                    <p>Se deberá simular el envío de datos al backend (como si fuera una llamada asíncrona) con una "promesa" con un temporizador de 3 segundos.</p>
+                    <p>* Los datos se deberán enviar al backend de forma asíncrona y al recibir la respuesta con el status 200, avanzar a la 3er pantalla.</p>
+                    <p><i><a href="https://github.com/Wheelhub-Opensource/test_backend">Encontrará los requisitos para realizar el back en este link</a></i></p>
                     <img src={Img7} />
                 </li>
                 <li>
