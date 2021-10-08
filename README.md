@@ -1,4 +1,4 @@
-[![WheelHub](https://wheelhub.es/_nuxt/img/logo@2x.ff6c894.png)](https://wheelhub.es/)
+[![WheelHub](https://wheelhub.es/logo/Logotipo-Vertical-Negro-Alta.png)](https://wheelhub.es/)
 
 ## Installation
 
