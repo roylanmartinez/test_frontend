@@ -13,4 +13,4 @@ npm run start
 ## Instructions
 Siga las instrucciones establecidas dentro del proyecto.
 
-Una vez finalizado el test, suba la prueba a una cuenta de github propia con acceso público al repositorio.
+Una vez finalizado el test, suba la prueba a una cuenta de github propia con acceso público al repositorio y compartanos el link a nuestros correos.
