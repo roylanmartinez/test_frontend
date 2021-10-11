@@ -1,0 +1,112 @@
+@import "./base.scss";
+
+.navbarContainer {
+  background-color: $light-green-color;
+  height: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  .navbarMiddleContainer {
+    position: relative;
+    width: 500px;
+    height: 100%;
+    display: flex;
+    .largeLine {
+      pointer-events: none;
+      position: absolute;
+      height: 2px;
+      background-color: $step-color;
+      top: calc(50% - 2px);
+      width: calc(100% / 6 * 4);
+      margin-left: calc(100% / 6);
+      margin-right: calc(100% / 6);
+    }
+
+    .navbarVerticalContainer {
+      position: relative;
+      cursor: pointer;
+      flex-grow: 1;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      .line {
+        pointer-events: none;
+        position: absolute;
+        height: 2px;
+        background-color: $step-color;
+        top: calc(50% - 2px);
+      }
+
+      .navbarBall {
+        z-index: 1;
+        $ballSize: 40px;
+        position: relative;
+        display: flex;
+        align-self: center;
+        width: $ballSize;
+        height: $ballSize;
+        border-radius: $ballSize;
+        background-color: $step-color;
+        .image {
+          height: 100%;
+          width: 100%;
+        }
+
+        .number {
+          z-index: 1;
+          width: $ballSize;
+          height: $ballSize;
+          text-align: center;
+          line-height: $ballSize;
+          font-size: calc(#{$ballSize} - 18px);
+          font-weight: 600;
+          color: white;
+        }
+      }
+      .navbarTriangle {
+        align-self: center;
+        height: 15px;
+        width: 15px;
+        border-left: 15px solid transparent;
+        border-top: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+      }
+      &.selected {
+        @keyframes lineEffect {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+            transform: scaleY(1.5);
+          }
+        }
+        .line {
+          animation-name: lineEffect;
+          animation-duration: 1s;
+          animation-fill-mode: forwards;
+          background-color: $dark-green-color;
+          &.center {
+            left: -50%;
+            width: 100%;
+          }
+          &.right {
+            left: -150%;
+            width: 200%;
+          }
+        }
+        .navbarTriangle {
+          border-bottom: 15px solid white;
+        }
+        .navbarBall {
+          background-color: $dark-green-color;
+        }
+      }
+    }
+  }
+}
