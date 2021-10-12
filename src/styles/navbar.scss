@@ -19,9 +19,12 @@
       height: 2px;
       background-color: $step-color;
       top: calc(50% - 2px);
-      width: calc(100% / 6 * 4);
       margin-left: calc(100% / 6);
       margin-right: calc(100% / 6);
+      width: 66%;
+      &.above {
+        background-color: $dark-green-color;
+      }
     }
 
     .navbarVerticalContainer {
@@ -33,13 +36,6 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      .line {
-        pointer-events: none;
-        position: absolute;
-        height: 2px;
-        background-color: $step-color;
-        top: calc(50% - 2px);
-      }
 
       .navbarBall {
         z-index: 1;
@@ -84,20 +80,6 @@
           to {
             opacity: 1;
             transform: scaleY(1.5);
-          }
-        }
-        .line {
-          animation-name: lineEffect;
-          animation-duration: 1s;
-          animation-fill-mode: forwards;
-          background-color: $dark-green-color;
-          &.center {
-            left: -50%;
-            width: 100%;
-          }
-          &.right {
-            left: -150%;
-            width: 200%;
           }
         }
         .navbarTriangle {

@@ -1,0 +1,65 @@
+@media only screen and (max-width: 768px) {
+  $borderSize: 20px;
+  $checkboxSize: 30px;
+  .body {
+    margin: 20px $borderSize 0 $borderSize;
+  }
+  .checkbox {
+    height: $checkboxSize;
+    width: $checkboxSize;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  // big
+  $borderSize: 200px;
+  $checkboxSize: 20px;
+
+  .body {
+    margin: 20px $borderSize 0 $borderSize;
+  }
+  .checkbox {
+    height: $checkboxSize;
+    width: $checkboxSize;
+  }
+}
+
+.body {
+  .titleContainer {
+    // background-color: aqua;
+    width: 100px;
+    border-bottom: 4px solid $light-green-color;
+  }
+  .title {
+    word-break: keep-all;
+    width: 70vw;
+  }
+  .centralImageContainer {
+    margin-top: 10px;
+    width: 200px;
+    .centralImage {
+      width: 100%;
+    }
+  }
+  .smallTitle {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+    outline: 1px solid rgba(0, 0, 0, 0.438);
+    border: 3px solid white;
+    &.accepted {
+      background-color: #9cdcb9;
+    }
+  }
+  .checkboxText {
+    color: gray;
+  }
+  .footer {
+    border-top: 1px solid rgba(128, 128, 128, 0.425);
+    padding-top: 20px;
+  }
+}

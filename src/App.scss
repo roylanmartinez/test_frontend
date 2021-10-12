@@ -1,6 +1,17 @@
 @import "./styles/base.scss";
 @import "./styles/navbar.scss";
+@import "./styles/body.scss";
 
-body {
-  background-color: black;
+.flexRowRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.flexRowCenter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.flexRow {
+  display: flex;
+  justify-content: center;
 }
