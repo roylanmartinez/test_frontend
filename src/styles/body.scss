@@ -62,4 +62,108 @@
     border-top: 1px solid rgba(128, 128, 128, 0.425);
     padding-top: 20px;
   }
+  .sharedButton {
+    border: none;
+    width: 200px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    &.notAllowed {
+      outline: none;
+      background-color: #788f9c;
+      opacity: 0.7;
+    }
+    &.allowed {
+      outline: none;
+      background-color: #07542a;
+      opacity: 1;
+      font-weight: bold;
+    }
+  }
+  @keyframes spinArround {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .sharedImageButton {
+    animation: spinArround 5s infinite;
+    height: 70%;
+    width: auto;
+    margin-right: 10px;
+  }
+  .sharedInputStyle {
+    $h: 50px;
+    // background-color: blue;
+    h6 {
+      width: 100%;
+      font-weight: bold;
+      span {
+        cursor: pointer;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-left: 5px;
+      }
+    }
+    div {
+      height: $h;
+      border-radius: 10px;
+      border: solid black 1px;
+      display: flex;
+      input {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        margin-left: 5px;
+        outline: 0;
+        border: none;
+      }
+
+      button {
+        background-color: transparent;
+        height: $h;
+        width: $h;
+        outline: 0;
+        border: 0;
+      }
+      &.notValid {
+        border: 2px solid red;
+      }
+    }
+    img {
+      cursor: pointer;
+      height: calc(#{$h} * 0.4);
+      width: calc(#{$h} * 0.4);
+    }
+    .progressLine {
+      $h: 20px;
+      width: calc(100% - 2 * #{$h});
+      height: 4px;
+      background-color: blue;
+      margin-left: $h;
+      margin-right: $h;
+      border: none;
+      outline: none;
+      @for $i from 0 through 100 {
+        &.s#{$i} {
+          @if $i <= 25 {
+            background-color: red;
+          } @else if $i <= 50 {
+            background-color: rgb(217, 255, 0);
+          } @else if $i <= 75 {
+            background-color: rgb(157, 255, 0);
+          } @else if $i <= 100 {
+            background-color: rgb(48, 153, 0);
+          }
+          width: calc(#{$i}% - 2 * #{$h});
+        }
+      }
+    }
+    p {
+      font-size: 12px;
+      margin-right: 10px;
+      text-align: end;
+    }
+  }
 }

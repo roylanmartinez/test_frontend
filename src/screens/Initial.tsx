@@ -3,7 +3,7 @@ import SharedButton from "../components/SharedButton";
 
 import AppContext from "../AppContext";
 
-function Initial(props) {
+function Initial() {
   const { mainState, setValue } = useContext(AppContext);
   return (
     <div className="body">
@@ -34,12 +34,8 @@ function Initial(props) {
       <div className="flexRow">
         <div>
           <div
-            className={
-              "checkbox " + (mainState.initial.accepted ? "accepted" : "")
-            }
-            onClick={() =>
-              setValue("initial", "accepted", !mainState.initial.accepted)
-            }
+            className={["checkbox", (mainState.acceptedConditions && "accepted")].join(" ")}
+            onClick={() => setValue("acceptedConditions", !mainState.acceptedConditions)}
           />
         </div>
         <div>
@@ -53,11 +49,9 @@ function Initial(props) {
       <div className="footer flexRowRight">
         <SharedButton
           onClick={() => {
-            if (mainState.initial.accepted) {
-              setValue("navbar", "selections", ["", "selected ", ""]);
-            }
+            if (mainState.acceptedConditions) setValue("selectedScreen", 1)
           }}
-          isAllowed={mainState.initial.accepted}
+          isAllowed={mainState.acceptedConditions}
         />
       </div>
     </div>
