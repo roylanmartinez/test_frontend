@@ -10,9 +10,11 @@ function Navbar() {
   const [screens, setScreens] = useState<IState>({old: undefined, new: 0})
   const prevScreen = UsePrevious(mainState.selectedScreen);
   const handleClick = (newPageSelected: number) => {
-    if ((newPageSelected > 0) && !mainState.acceptedConditions || (newPageSelected === mainState.selectedScreen)) {
+    if ((newPageSelected > 0) && !mainState.acceptedConditions || (newPageSelected === mainState.selectedScreen) || 
+    (mainState.status !== 200 && newPageSelected === 2)) {
       return;
     }
+
     setValue("selectedScreen", newPageSelected);
   };
 

@@ -1,7 +1,10 @@
 import React, { useContext, useState } from "react";
 import SharedInput from "../components/SharedInput";
 import SharedButton from "../components/SharedButton";
+import { IResponse } from "../App";
 import AppContext from "../AppContext";
+import axios from "axios";
+
 interface IErrors {
     usuario?: string,
     empty?: string,
@@ -41,11 +44,22 @@ function UserCreation() {
   const [inputErrors, setInputErrors] = useState<IErrors>({});
   const [loading, setLoading] = useState(false);
 
-  const createUser = () => {
+  const createUser = async () => {
     const errors = validate({usuario: mainState.usuario, contra1: mainState.password1, contra2:  mainState.password2})
     setInputErrors(errors)
     if (Object.keys(errors).length === 0){
-      setValue("selectedScreen", 2)
+      setLoading(true)
+      const createUserReq: IResponse = await axios.post('http://localhost:8080', {
+      username: mainState.usuario,
+      password: mainState.password1
+      })
+      if (createUserReq.data.status){
+        setValue("selectedScreen", 2)
+        setValue("status", createUserReq.data.status)
+      } else {
+        setValue("status", 500)
+      }
+      setLoading(false)
     }
   };
   return (
@@ -109,9 +123,7 @@ function UserCreation() {
           label={"Atrás"}
           isTransparent={true}
           isBold={false}
-          onClick={() => {
-            // if (mainState.acceptedConditions) setValue("selectedScreen", 1);
-          }}
+          onClick={() => setValue("selectedScreen", 0)}
           isAllowed={true}
         />
         <SharedButton
@@ -120,6 +132,7 @@ function UserCreation() {
           isBold={true}
           onClick={createUser}
           isAllowed={true}
+          isLoading={loading}
         />
       </div>
     </div>
