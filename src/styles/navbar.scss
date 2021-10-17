@@ -3,7 +3,7 @@
 .navbarContainer {
   background-color: $light-green-color;
   height: 100px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -20,54 +20,40 @@
       height: 3px;
       background-color: $step-color;
       top: calc(50% - 2px);
-      &.above {
-        background-color: $dark-green-color;
-      }
       width: 70%;
       div {
         position: relative;
         div {
           position: absolute;
-          background-color: red;
+          background-color: $dark-green-color;
           height: 10px;
           width: 10px;
-          right: -10px;
-          top: -10px;
+          right: 0;
+          top: -3px;
         }
         height: 100%;
         width: 50%;
         width: 0;
         @for $i from 0 through 2 {
           @for $j from 0 through 2 {
-            @if $i != $j {
+            @if $i != $j and $i != undefined and $j != undefined {
               &.from#{$i}to#{$j} {
                 div {
-                  @keyframes test1 {
-                    from {
-                      transform: scale(1);
-                    }
-                    to {
-                      transform: scale(2);
-                    }
-                  }
-                  animation-name: test1;
-                  animation-timing-function: ease-in-out;
-                  animation-fill-mode: forwards;
-                  animation-duration: 1s;
+                  border-radius: 50%;
                 }
-                background-color: red;
-                @keyframes test {
+                background-color: $dark-green-color;
+                @keyframes animation#{$i}-#{$j} {
                   from {
-                    width: 0%;
+                    width: percentage(($i)/2);
                   }
                   to {
-                    width: 100%;
+                    width: percentage(($j)/2);
                   }
                 }
-                animation-name: test;
+                animation-name: animation#{$i}-#{$j};
                 animation-timing-function: ease-in-out;
                 animation-fill-mode: forwards;
-                animation-duration: 1s;
+                animation-duration: 0.5s;
               }
             }
           }

@@ -1,35 +1,35 @@
-import React, {useState, useRef, ElementType, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 
 interface IProps{ 
-  neededHelp: boolean,
-  isItPassword: boolean,
+  neededHelp?: boolean,
+  isItPassword?: boolean,
+  label: string,
   value: string,
-  notValid: boolean,
-  maximum: number,
-  onClick: ()=>void,
+  error?: string,
+  stateId: string,
+  onChange: (key: string, value: string | number | boolean) => void
+  sentPlaceHolder?: string,
+  notValid?: boolean,
+  maximum?: number,
 }
 
-const SharedInput = ({ neededHelp, isItPassword, value, notValid, maximum}: IProps) => {
+const SharedInput = ({ neededHelp, isItPassword, label, value, error, notValid, maximum, sentPlaceHolder, stateId, onChange}: IProps) => {
     const valueRef = useRef<HTMLInputElement  | null>(null);
-    const [shownPassword, setShownPassword] = useState(false)
-    const [inputValue, setInputValue] = useState(value)
+    const [shownPassword, setShownPassword] = useState(!isItPassword)
     const [progressLine, setProgressLine] = useState(0)
     const handleChange = (newValue: string) => {
       
       if (isItPassword){
-        let maximumPercentage = 80;
+        let maximumPercentage = 100;
         let punctuation = Math.round(maximumPercentage * newValue.length / 24);
-        if (/(?=.*[A-Z])(?=.*[0-9])/.test(newValue)){
-          maximumPercentage = 100;
-        }
         setProgressLine((punctuation > maximumPercentage ? maximumPercentage : punctuation))
       }
       if (maximum && (newValue.length >= maximum)){
-        setInputValue(newValue.slice(0, maximum))
+        onChange(stateId, newValue.slice(0, maximum))
       }
       else {
-        setInputValue(newValue)
+        onChange(stateId, newValue)
       }
     }
     useEffect(() => {
@@ -39,13 +39,13 @@ const SharedInput = ({ neededHelp, isItPassword, value, notValid, maximum}: IPro
     return (
         <div className="sharedInputStyle">
             <h6>
-              Crea tu usuario {neededHelp && <img title="orem ipsum dolor sit amet, consectetur adipiscing elit"
+              {label} {neededHelp && <img title="orem ipsum dolor sit amet, consectetur adipiscing elit"
               src={require("../assets/img/help.png")}
               alt="asd"
               ></img>}
           </h6>
-            <div className={`${notValid && "notValid"}`}>
-              <input type={`${shownPassword ? "text" : "password"}`} value={inputValue} ref={valueRef} onChange={(changedValue)=>{
+            <div className={`${notValid ? "notValid" : "normal"}`}>
+              <input placeholder={sentPlaceHolder} type={`${shownPassword ? "text" : "password"}`} value={value} ref={valueRef} onChange={(changedValue)=>{
                 handleChange(changedValue.target.value)
               }} />
               
@@ -59,7 +59,8 @@ const SharedInput = ({ neededHelp, isItPassword, value, notValid, maximum}: IPro
               }
             </div>
             {isItPassword && <div className={`progressLine s${progressLine}`}></div>}
-            {maximum && <p>{`${inputValue.length}/${maximum}`}</p>}
+            {(maximum && !isItPassword) && <p>{`${value.length}/${maximum}`}</p>}
+            {error && <p className="error">{error}</p>}
         </div>
         
     );

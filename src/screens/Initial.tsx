@@ -46,8 +46,10 @@ function Initial() {
           </p>
         </div>
       </div>
-      <div className="footer flexRowRight">
+      <div className="footer oneItem flexRowRight">
         <SharedButton
+        isBold={true}
+        label={"Continuar"}
           onClick={() => {
             if (mainState.acceptedConditions) setValue("selectedScreen", 1)
           }}

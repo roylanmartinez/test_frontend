@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
+import * as React from 'react';
 
 //custom Hook
 const UsePrevious = (data: number): number | undefined => {
   const ref = React.useRef<number>();
   React.useEffect(()=>{
-    ref.current = data
+    ref.current = data;
   }, [data])
   return ref.current
 }

@@ -1,25 +1,36 @@
-import React, { useState, useContext, FC, useEffect, createContext } from "react";
+import React, { useState, useContext, FC, useEffect } from "react";
 import AppContext from "../AppContext";
 import UsePrevious from "../components/UsePrevious";
-
+interface IState {
+  old: number | undefined,
+  new: number
+}
 function Navbar() {
   const { mainState, setValue } = useContext(AppContext);
-  const prevScreen = UsePrevious(mainState.selectedScreen)
-
+  const [screens, setScreens] = useState<IState>({old: undefined, new: 0})
+  const prevScreen = UsePrevious(mainState.selectedScreen);
   const handleClick = (newPageSelected: number) => {
-    if ((newPageSelected > 0) && !mainState.acceptedConditions) {
+    if ((newPageSelected > 0) && !mainState.acceptedConditions || (newPageSelected === mainState.selectedScreen)) {
       return;
     }
     setValue("selectedScreen", newPageSelected);
   };
+
+  useEffect(() => {
+    setScreens({
+      old: prevScreen,
+      new: mainState.selectedScreen
+    })
+  }, [mainState.selectedScreen]);
+
   return (
     <div>
       <div className="navbarContainer">
         <div className="navbarMiddleContainer">
           <div
-            className={`largeLine above`}
+            className={`largeLine`}
           >
-            <div className={`from${prevScreen}to${mainState.selectedScreen}`}><div/></div>
+            <div className={`from${screens.old}to${screens.new}`}><div/></div>
           </div>
           {[...Array(3)].map((_, index) => (
             <VerticalDiv

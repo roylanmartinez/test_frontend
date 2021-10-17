@@ -1,12 +1,24 @@
 @media only screen and (max-width: 768px) {
-  $borderSize: 20px;
+  $borderSize: 5px;
   $checkboxSize: 30px;
   .body {
     margin: 20px $borderSize 0 $borderSize;
+    p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
   .checkbox {
     height: $checkboxSize;
     width: $checkboxSize;
+  }
+  .generalInputContainer {
+    gap: 10px;
+    div {
+      width: 100%;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
 }
 
@@ -17,18 +29,32 @@
 
   .body {
     margin: 20px $borderSize 0 $borderSize;
+    p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
   .checkbox {
     height: $checkboxSize;
     width: $checkboxSize;
   }
+  .generalInputContainer {
+    div {
+      flex-grow: 1;
+      width: 100px;
+      // height: 300px;
+      // background-color: red;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
 }
 
 .body {
   .titleContainer {
-    // background-color: aqua;
     width: 100px;
     border-bottom: 4px solid $light-green-color;
+    margin-bottom: 5px;
   }
   .title {
     word-break: keep-all;
@@ -59,6 +85,12 @@
     color: gray;
   }
   .footer {
+    display: flex;
+    justify-content: space-between;
+    &.oneItem {
+      justify-content: flex-end;
+    }
+    margin-top: 20px;
     border-top: 1px solid rgba(128, 128, 128, 0.425);
     padding-top: 20px;
   }
@@ -77,6 +109,12 @@
       outline: none;
       background-color: #07542a;
       opacity: 1;
+    }
+    &.transparent {
+      background-color: transparent;
+      color: black;
+    }
+    &.bold {
       font-weight: bold;
     }
   }
@@ -96,7 +134,7 @@
   }
   .sharedInputStyle {
     $h: 50px;
-    // background-color: blue;
+    height: $h;
     h6 {
       width: 100%;
       font-weight: bold;
@@ -108,12 +146,15 @@
       }
     }
     div {
-      height: $h;
+      width: 100%;
+      margin: 0;
+
       border-radius: 10px;
       border: solid black 1px;
       display: flex;
       input {
-        border-radius: 10px 10px 0 0;
+        height: calc(#{$h} - 5px);
+        border-radius: 10px;
         width: 100%;
         margin-left: 5px;
         outline: 0;
@@ -122,13 +163,17 @@
 
       button {
         background-color: transparent;
-        height: $h;
+        height: calc(#{$h} - 5px);
         width: $h;
         outline: 0;
         border: 0;
       }
       &.notValid {
+        height: $h;
         border: 2px solid red;
+      }
+      &.normal {
+        height: $h;
       }
     }
     img {
@@ -140,7 +185,6 @@
       $h: 20px;
       width: calc(100% - 2 * #{$h});
       height: 4px;
-      background-color: blue;
       margin-left: $h;
       margin-right: $h;
       border: none;
@@ -160,10 +204,54 @@
         }
       }
     }
-    p {
-      font-size: 12px;
-      margin-right: 10px;
-      text-align: end;
+
+    .error {
+      // background-color: red;
+      text-align: left;
+      color: red;
+      font-size: 11px;
+    }
+  }
+  .recordatorio {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 12px;
+    margin-right: 10px;
+    text-align: left;
+  }
+
+  .generalInputContainer {
+    &.feedback {
+      height: 200px;
+      div {
+        height: 200px;
+      }
+    }
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      height: 100px;
+    }
+  }
+  .feedbackContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .leftFeedBack {
+      height: 200px;
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    .rightFeedBack {
+      h4 {
+        margin-left: 10px;
+      }
+      margin-left: 20px;
+      width: 500px;
     }
   }
 }
